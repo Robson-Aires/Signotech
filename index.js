@@ -1,4 +1,7 @@
 const express = require('express');
+const http = require('http'); // Para usar WebSockets
+const { Server } = require('socket.io'); // Para usar o Socket.IO
+
 const app = express();
 
 // Importar as rotas
@@ -7,9 +10,17 @@ const votoRoutes = require('./routes/votoRoutes');
 const opcaoEnquete = require('./routes/opcaoEnquete');
 const usuarioRoutes = require('./routes/usuarioRoutes');
 
+// Criar o servidor HTTP
+const server = http.createServer(app);
+
+// Criar o servidor Socket.IO
+const io = new Server(server);
+
+// Disponibilizar o `io` para as rotas
+app.set('io', io);
 
 // Middleware para parse de JSON
-app.use(express.json());  // Aqui é suficiente para lidar com JSON
+app.use(express.json()); // Aqui é suficiente para lidar com JSON
 
 // Usar as rotas
 app.use(enqueteRoutes);
@@ -17,9 +28,18 @@ app.use(votoRoutes);
 app.use(opcaoEnquete);
 app.use(usuarioRoutes);
 
+// Lidar com a conexão do cliente usando Socket.IO
+io.on('connection', (socket) => {
+  console.log('Novo cliente conectado');
+  
+  // Ouvir a desconexão do cliente
+  socket.on('disconnect', () => {
+    console.log('Cliente desconectado');
+  });
+});
 
 // Iniciar o servidor
 const port = 3000;
-app.listen(port, () => {
-  // console.log(`Servidor rodando na porta ${port}`);
+server.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
 });

@@ -1,17 +1,21 @@
-// controllers/VotoController.js
-const Voto  = require('../models/Voto');
+const Voto = require('../models/Voto');
 
 // Registrar voto
 exports.registrarVoto = async (req, res) => {
   try {
     const { opcao_id, usuario_id, create_at } = req.body;
     console.log('Requisição recebida:', req.body);
-    console.log('Modelo Voto:', Voto);
+    
+    // Criando um novo voto
     const novoVoto = await Voto.create({
       opcao_id,
       usuario_id,
       create_at,
     });
+
+    // Emitir o evento 'novo_voto' para todos os clientes conectados
+    req.app.get('io').emit('novo_voto', { opcao_id });
+
     res.status(201).json(novoVoto);
   } catch (error) {
     res.status(500).json({ message: 'Erro ao registrar o voto', error });

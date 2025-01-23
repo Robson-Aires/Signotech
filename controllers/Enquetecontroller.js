@@ -1,9 +1,12 @@
 const CreateEnquete = require('../models/CreateEnquete'); // Modelo da tabela de enquetes
+const OpcoesDaEnquete = require('../models/OpcoesDaEnquete'); // Modelo da tabela de opções
+const calcularStatus = require('../utils/enqueteStatus');
+
 
 // Função para listar todas as enquetes
 exports.listarEnquetes = async (req, res) => {
     try {
-        const enquetes = await CreateEnquete.findAll(); // Obtém todas as enquetes
+        const enquetes = await CreateEnquete.findAll();
         return res.status(200).json(enquetes);
     } catch (error) {
         console.error('Erro ao listar enquetes:', error);
@@ -11,15 +14,33 @@ exports.listarEnquetes = async (req, res) => {
     }
 };
 
+
+// Listar enquetes
+exports.listarEnquetes = async (req, res) => {
+    try {
+      const enquetes = await CreateEnquete.findAll({
+        include: [{ model: OpcoesDaEnquete }]
+      });
+  
+      const enquetesComStatus = enquetes.map((enquete) => {
+        return {
+          ...enquete.toJSON(),
+          status: calcularStatus(enquete.data_inicio, enquete.data_fim)
+        };
+      });
+  
+      res.status(200).json(enquetesComStatus);
+    } catch (error) {
+      res.status(500).json({ message: 'Erro ao listar as enquetes.', error });
+    }
+  };
+
 // Função para criar nova enquete
 exports.criarEnquete = async (req, res) => {
-    // console.log('Requisição recebida:', req.body);
-
     try {
-        const { titulo, data_inicio, data_fim, usuario_id } = req.body;
-        console.log('Dados desestruturados:', { titulo, data_inicio, data_fim, usuario_id });
+        const { titulo, data_inicio, data_fim, usuario_id, opcoes } = req.body;
 
-        // Validações
+        // Validações gerais
         if (!titulo || !data_inicio || !data_fim || !usuario_id) {
             return res.status(400).json({ message: 'Todos os campos são obrigatórios!' });
         }
@@ -27,6 +48,11 @@ exports.criarEnquete = async (req, res) => {
         // Verificar se as datas são válidas
         if (isNaN(Date.parse(data_inicio)) || isNaN(Date.parse(data_fim))) {
             return res.status(400).json({ message: 'As datas fornecidas são inválidas!' });
+        }
+
+        // Validação: Verificar se há pelo menos 3 opções
+        if (!Array.isArray(opcoes) || opcoes.length < 3) {
+            return res.status(400).json({ message: 'A enquete deve ter no mínimo 3 opções.' });
         }
 
         // Criação da enquete
@@ -37,7 +63,21 @@ exports.criarEnquete = async (req, res) => {
             usuario_id,
         });
 
-        return res.status(201).json(enquete);
+        // Adicionar as opções associadas à enquete
+        const opcoesCriadas = [];
+        for (const opcao of opcoes) {
+            const novaOpcao = await OpcoesDaEnquete.create({
+                enquete_id: enquete.id,
+                opcao, // Salva cada opção
+            });
+            opcoesCriadas.push(novaOpcao);
+        }
+
+        return res.status(201).json({
+            message: 'Enquete criada com sucesso!',
+            enquete,
+            opcoes: opcoesCriadas,
+        });
     } catch (error) {
         console.error('Erro ao criar a enquete:', error);
         return res.status(500).json({ message: 'Erro ao criar a enquete', error: error.message });
