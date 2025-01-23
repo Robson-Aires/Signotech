@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../db');
 const CreateEnquete = require('./CreateEnquete');
 
-const OpcoesDaEnquete = sequelize.define('OpcoesDaEnquete', {
+const OpcoesDaEnquete = sequelize.define('opcoes_da_enquete', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

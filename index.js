@@ -1,23 +1,25 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
-const routes = require('./routes/routes');
-const sequelize = require('./db');
 
-// Configurar o express
-app.use(bodyParser.json());
+// Importar as rotas
+const enqueteRoutes = require('./routes/enqueteRoutes');
+const votoRoutes = require('./routes/votoRoutes');
+const opcaoEnquete = require('./routes/opcaoEnquete');
+const usuarioRoutes = require('./routes/usuarioRoutes');
 
-// Rotas
-app.use('/api', routes);
 
-// Sincronizar banco de dados
-sequelize.sync().then(() => {
-    console.log("Banco de dados sincronizado!");
-}).catch((error) => {
-    console.error("Erro ao sincronizar banco de dados:", error);
-});
+// Middleware para parse de JSON
+app.use(express.json());  // Aqui é suficiente para lidar com JSON
 
-// Iniciar servidor
-app.listen(3000, () => {
-    console.log("Servidor rodando na porta 3000");
+// Usar as rotas
+app.use(enqueteRoutes);
+app.use(votoRoutes);
+app.use(opcaoEnquete);
+app.use(usuarioRoutes);
+
+
+// Iniciar o servidor
+const port = 3000;
+app.listen(port, () => {
+  // console.log(`Servidor rodando na porta ${port}`);
 });

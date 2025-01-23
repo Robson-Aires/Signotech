@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../db'); // Importando a conexão
+const sequelize = require('../db');
 
 const Voto = sequelize.define('Voto', {
     id: {
@@ -16,7 +16,7 @@ const Voto = sequelize.define('Voto', {
         allowNull: false
     },
     create_at: {
-        type: DataTypes.DATE, // Corrigido para DataTypes.DATE
+        type: DataTypes.DATE,
         allowNull: true
     }
 }, {

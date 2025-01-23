@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../db');
+const sequelize = require('../db'); 
 const Usuario = require('./usuario');
 
-const CreateEnquete = sequelize.define('CreateEnquete', {
+const CreateEnquete = sequelize.define('create_enquete', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -25,12 +25,16 @@ const CreateEnquete = sequelize.define('CreateEnquete', {
         allowNull: false
     }
 }, {
-    tableName: 'create_enquete',
+    tableName: 'create_enquete', // Nome da tabela no banco
     timestamps: false
 });
 
-// Relacionamento
+sequelize.sync()
+  .then(() => console.log('Tabela create_enquete sincronizada com sucesso'))
+  .catch((err) => console.log('Erro ao sincronizar tabela:', err));
+  
+// Relacionamento com a tabela `usuarios`
 CreateEnquete.belongsTo(Usuario, { foreignKey: 'usuario_id' });
 Usuario.hasMany(CreateEnquete, { foreignKey: 'usuario_id' });
 
-module.exports = CreateEnquete;
+module.exports = CreateEnquete;  // Certifique-se de que está exportando o modelo corretamente

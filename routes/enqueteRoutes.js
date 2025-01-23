@@ -2,16 +2,16 @@ const express = require('express');
 const router = express.Router();
 const EnqueteController = require('../controllers/Enquetecontroller');
 
-// Criar nova enquete
+// Rota para criar nova enquete
 router.post('/enquete', EnqueteController.criarEnquete);
 
-// Listar enquetes
+// Rota para listar enquetes
 router.get('/enquetes', EnqueteController.listarEnquetes);
 
-// Editar enquete
+// Rota para editar enquete
 router.put('/enquete/:id', EnqueteController.editarEnquete);
 
-// Excluir enquete
+// Rota para excluir enquete
 router.delete('/enquete/:id', EnqueteController.excluirEnquete);
 
 module.exports = router;
