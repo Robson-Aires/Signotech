@@ -1,4 +1,4 @@
-# Boas-vindas ao repositório do teste de projeto  signo tech!
+# Boas-vindas ao repositório do teste de Avaliação de competência da signo tech!
 
 
 Obrigado por dedicar um tempo para visitar este repositório! Aqui você encontrará todas as informações detalhadas sobre o desenvolvimento deste projeto, desde as funcionalidades implementadas até os aprendizados adquiridos ao longo do processo.
@@ -42,6 +42,8 @@ botão de votar deve estar desabilitado.
 Os números de resultados devem ser apresentados sempre que houver novo voto 
 (realtime)
 <img src='./image/requisito.png' />
+<img src='./image/ultimo_requisito.png' />
+
 
 </details>
 
