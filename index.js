@@ -19,7 +19,7 @@ const io = new Server(server);
 
 // isso serve para conectar back com o front-end
 app.use(cors({
-  origin: 'http://localhost:3001', // substitua pelo endereço do seu front-end
+  origin: 'http://localhost:3001',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type']
 }));
@@ -29,7 +29,7 @@ app.use(cors({
 app.set('io', io);
 
 // Middleware para parse de JSON
-app.use(express.json()); // Aqui é suficiente para lidar com JSON
+app.use(express.json());
 
 // Usar as rotas
 app.use(enqueteRoutes);

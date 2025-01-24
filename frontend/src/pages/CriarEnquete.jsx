@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importando o hook useNavigate
 import axios from 'axios';
+import './criarenquete.css'; // Importando o arquivo CSS
 
 function CriarEnquete() {
   const [titulo, setTitulo] = useState('');
   const [dataInicio, setDataInicio] = useState('');
   const [dataFim, setDataFim] = useState('');
   const [opcoes, setOpcoes] = useState(['', '', '']);
+  const navigate = useNavigate(); // Inicializando o navigate
 
   const handleCriarEnquete = async (e) => {
     e.preventDefault();
 
-    // Verifique se todos os campos estão preenchidos
     if (!titulo || !dataInicio || !dataFim || opcoes.some(opcao => opcao.trim() === '')) {
       console.error('Todos os campos são obrigatórios!');
       return;
     }
 
     try {
-      // Enviando os dados para o backend
       const response = await axios.post('http://localhost:3000/enquete', {
         titulo,
         data_inicio: dataInicio,
         data_fim: dataFim,
-        usuario_id: 1, // Certifique-se de que está passando o id do usuário corretamente
+        usuario_id: 1,
         opcoes,
       });
-
       console.log('Enquete criada:', response.data);
     } catch (error) {
       console.error('Erro ao criar enquete:', error);
@@ -52,9 +52,9 @@ function CriarEnquete() {
   };
 
   return (
-    <div>
+    <div className="criar-enquete-container">
       <h1>Criar Enquete</h1>
-      <form onSubmit={handleCriarEnquete}>
+      <form className="criar-enquete-form" onSubmit={handleCriarEnquete}>
         <input
           type="text"
           placeholder="Título da enquete"
@@ -74,18 +74,29 @@ function CriarEnquete() {
           onChange={(e) => setDataFim(e.target.value)}
         />
         {opcoes.map((opcao, index) => (
-          <div key={index}>
+          <div className="opcao-container" key={index}>
             <input
               type="text"
               placeholder={`Opção ${index + 1}`}
               value={opcao}
               onChange={(e) => handleOpcaoChange(index, e.target.value)}
             />
-            <button type="button" onClick={() => removerOpcao(index)} disabled={opcoes.length <= 3}>Remover</button>
+            <button
+              type="button"
+              onClick={() => removerOpcao(index)}
+              disabled={opcoes.length <= 3}
+            >
+              Remover
+            </button>
           </div>
         ))}
-        <button type="button" onClick={adicionarOpcao}>Adicionar Opção</button>
+        <button type="button" onClick={adicionarOpcao}>
+          Adicionar Opção
+        </button>
         <button type="submit">Criar Enquete</button>
+        <button type="button" onClick={() => navigate('/dashboard')}>
+          Voltar para o Dashboard
+        </button>
       </form>
     </div>
   );

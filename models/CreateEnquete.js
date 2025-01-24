@@ -37,4 +37,4 @@ sequelize.sync()
 CreateEnquete.belongsTo(Usuario, { foreignKey: 'usuario_id' });
 Usuario.hasMany(CreateEnquete, { foreignKey: 'usuario_id' });
 
-module.exports = CreateEnquete;  // Certifique-se de que está exportando o modelo corretamente
+module.exports = CreateEnquete;

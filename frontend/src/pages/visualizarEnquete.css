@@ -1,0 +1,102 @@
+.visualizar-enquete-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9; /* Fundo leve */
+  border: 1px solid #dddddd; /* Borda fina */
+  border-radius: 10px; /* Borda arredondada */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
+
+.visualizar-enquete-container h1 {
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+.status {
+  font-weight: bold;
+  margin: 10px 0;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.status-nao-iniciada {
+  background-color: #cccccc;
+  color: #333333;
+}
+
+.status-em-andamento {
+  background-color: #28a745;
+  color: white;
+}
+
+.status-finalizada {
+  background-color: #dc3545;
+  color: white;
+}
+
+.opcoes-container {
+  margin: 20px 0;
+}
+
+.opcao-item {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.opcao-item button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.opcao-item button:hover {
+  background-color: #0056b3;
+}
+
+.opcao-item button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.botao-voltar {
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botao-voltar:hover {
+  background-color: #0056b3;
+}
+
+.enquete-inativa {
+  color: red;
+  font-weight: bold;
+}
+
+.informacoes-enquete {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  background-color: #ffffff;
+  text-align: left;
+}
+
+.informacoes-enquete p {
+  margin: 5px 0;
+}

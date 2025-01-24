@@ -1,0 +1,62 @@
+.body {
+  background-color: #f5f5f5;
+}
+
+.usuario-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.usuario-form h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.usuario-form form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.usuario-form form input {
+  width: 75%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.usuario-form img {
+  border-radius: 14px;
+  height: 250px;
+  margin-left: -20px;
+}
+
+/* Botão */
+.usuario-form form button {
+  width: 75%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.usuario-form form button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 814px) and (max-height: 608px) {
+  .usuario-form img {
+    display: none;
+  }
+}

@@ -1,0 +1,86 @@
+.criar-enquete-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    background-color: #f4f4f9;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .criar-enquete-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .criar-enquete-form input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 94%;
+  }
+  
+  .opcao-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .opcao-container input {
+    flex: 1;
+  }
+  
+  .criar-enquete-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .criar-enquete-form button[type="button"] {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .criar-enquete-form button[type="button"]:hover {
+    background-color: #0056b3;
+  }
+  
+  .criar-enquete-form button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .criar-enquete-form button[type="submit"]:hover {
+    background-color: #218838;
+  }
+  
+  .criar-enquete-form button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  
+  .criar-enquete-form .opcao-container button {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .criar-enquete-form .opcao-container button:hover {
+    background-color: #c82333;
+  }
+  

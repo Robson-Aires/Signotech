@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { io } from 'socket.io-client';
+import './visualizarEnquete.css'; // Importando o CSS
 
 function VisualizarEnquete() {
   const [enquete, setEnquete] = useState(null);
   const [opcoes, setOpcoes] = useState([]);
-  const [voto, setVoto] = useState(null); // Voto do usuário
-  const [ativa, setAtiva] = useState(false); // Estado da enquete (ativa ou não)
+  const [voto, setVoto] = useState(null);
+  const [ativa, setAtiva] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Função para determinar o status da enquete
   const obterStatus = (dataInicio, dataFim) => {
     const agora = new Date();
     const inicio = new Date(dataInicio);
@@ -27,9 +27,7 @@ function VisualizarEnquete() {
   };
 
   useEffect(() => {
-    const socket = io('ws://localhost:3000', {
-      transports: ['websocket'],
-    });
+    const socket = io('ws://localhost:3000', { transports: ['websocket'] });
 
     socket.on('novo_voto', (data) => {
       setOpcoes((prevOpcoes) =>
@@ -43,7 +41,6 @@ function VisualizarEnquete() {
 
     const fetchEnquete = async () => {
       try {
-        // Buscar TODAS as enquetes
         const enqueteResponse = await axios.get('http://localhost:3000/enquetes');
         const enqueteData = enqueteResponse.data.find((e) => e.id === parseInt(id, 10));
 
@@ -52,9 +49,8 @@ function VisualizarEnquete() {
           return;
         }
 
-        // Garantir que as datas sejam válidas
-        const inicio = enqueteData.data_inicio ? new Date(enqueteData.data_inicio) : null;
-        const fim = enqueteData.data_fim ? new Date(enqueteData.data_fim) : null;
+        const inicio = new Date(enqueteData.data_inicio);
+        const fim = new Date(enqueteData.data_fim);
 
         setEnquete({
           ...enqueteData,
@@ -62,15 +58,13 @@ function VisualizarEnquete() {
           data_fim: fim,
         });
 
-        // Buscar as opções associadas à enquete
         const opcoesResponse = await axios.get(`http://localhost:3000/opcoes/${id}`);
         const opcoesComVotos = opcoesResponse.data.map((opcao) => ({
           ...opcao,
-          votos: opcao.votos || 0, // Garantir que votos exista
+          votos: opcao.votos || 0,
         }));
         setOpcoes(opcoesComVotos);
 
-        // Verificar se a enquete está ativa
         const agora = new Date();
         setAtiva(inicio && fim && agora >= inicio && agora <= fim);
       } catch (error) {
@@ -87,7 +81,7 @@ function VisualizarEnquete() {
 
   const handleVotar = async (opcaoId) => {
     try {
-      const usuarioId = 1; // Simulação do ID do usuário logado
+      const usuarioId = 1;
       const createAt = new Date().toISOString();
 
       await axios.post('http://localhost:3000/voto', {
@@ -96,7 +90,6 @@ function VisualizarEnquete() {
         create_at: createAt,
       });
 
-      // Buscar novamente os votos para sincronizar
       const opcoesResponse = await axios.get(`http://localhost:3000/opcoes/${id}`);
       const opcoesAtualizadas = opcoesResponse.data.map((opcao) => ({
         ...opcao,
@@ -115,18 +108,27 @@ function VisualizarEnquete() {
   }
 
   return (
-    <div>
+    <div className="visualizar-enquete-container">
       <h1>{enquete.titulo}</h1>
       <p>
-        Início: {enquete.data_inicio?.toLocaleString() || 'Data inválida'} | 
-        Fim: {enquete.data_fim?.toLocaleString() || 'Data inválida'} | 
+        <strong>Início:</strong> {enquete.data_inicio.toLocaleString()} |{' '}
+        <strong>Fim:</strong> {enquete.data_fim.toLocaleString()}
+      </p>
+      <p
+        className={`status status-${obterStatus(
+          enquete.data_inicio,
+          enquete.data_fim
+        )
+          .toLowerCase()
+          .replace(' ', '-')}`}
+      >
         Status: {obterStatus(enquete.data_inicio, enquete.data_fim)}
       </p>
-      {!ativa && <p style={{ color: 'red' }}>Enquete encerrada ou ainda não iniciada</p>}
-      <div>
+      {!ativa && <p className="enquete-inativa">Enquete encerrada ou ainda não iniciada</p>}
+      <div className="opcoes-container">
         <h3>Opções:</h3>
         {opcoes.map((opcao) => (
-          <div key={opcao.id}>
+          <div className="opcao-item" key={opcao.id}>
             <button onClick={() => handleVotar(opcao.id)} disabled={!ativa || voto !== null}>
               {opcao.opcao}
             </button>
@@ -134,7 +136,9 @@ function VisualizarEnquete() {
           </div>
         ))}
       </div>
-      <button onClick={() => navigate('/dashboard')}>Voltar ao Dashboard</button>
+      <button className="botao-voltar" onClick={() => navigate('/dashboard')}>
+        Voltar ao Dashboard
+      </button>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db'); // Certifique-se de importar a conexão com o banco de dados corretamente
+const db = require('../db');
 const OpcoesDaEnqueteController = require('../controllers/OpcoesDaEnqueteController');
 
 // Criar opções de enquete
