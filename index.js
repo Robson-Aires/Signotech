@@ -3,6 +3,7 @@ const http = require('http'); // Para usar WebSockets
 const { Server } = require('socket.io'); // Para usar o Socket.IO
 
 const app = express();
+const cors = require('cors');
 
 // Importar as rotas
 const enqueteRoutes = require('./routes/enqueteRoutes');
@@ -15,6 +16,14 @@ const server = http.createServer(app);
 
 // Criar o servidor Socket.IO
 const io = new Server(server);
+
+// isso serve para conectar back com o front-end
+app.use(cors({
+  origin: 'http://localhost:3001', // substitua pelo endereço do seu front-end
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
+
 
 // Disponibilizar o `io` para as rotas
 app.set('io', io);

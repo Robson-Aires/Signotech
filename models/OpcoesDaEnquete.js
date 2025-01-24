@@ -15,6 +15,11 @@ const OpcoesDaEnquete = sequelize.define('opcoes_da_enquete', {
     opcao: {
         type: DataTypes.STRING(190),
         allowNull: false
+    },
+    votos: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: 0 // Valor padrão para votos
     }
 }, {
     tableName: 'opcoes_da_enquete',

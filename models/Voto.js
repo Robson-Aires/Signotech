@@ -16,7 +16,7 @@ const Voto = sequelize.define('Voto', {
         allowNull: false
     },
     create_at: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATE, // Corrigido para DataTypes.DATE
         allowNull: true
     }
 }, {
