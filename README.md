@@ -83,8 +83,36 @@ Esses desafios foram superados com bastante tentativa e erro, além de pesquisa 
 </details>
 <br />
 <details>
-      <summary><strong>🚀 Como visualizar o projeto e como executar ele localmente</strong></summary><br />
+      <summary><strong>🚀 como executar o projeto localmente</strong></summary><br />
  - você poderá fazer o clone do projeto utilizando esse comando:
 gitclone git@github.com:Robson-Aires/Signotech.git
+
+Instale as dependências:
+npm install
+
+Inicie o servidor:
+node index.js
+O servidor estará rodando em http://localhost:3000.
+
+Frontend
+Navegue até a pasta do frontend:
+
+cd frontend
+Instale as dependências:
+
+npm install
+Inicie o servidor de desenvolvimento:
+
+npm start
+O frontend estará disponível em http://localhost:3001.
+
+Configurações adicionais
+Banco de dados
+Certifique-se de que o banco de dados está configurado e rodando antes de iniciar o backend.
+
+WebSocket
+Verifique se o WebSocket está funcionando corretamente para garantir a atualização em tempo real dos votos.
+
+
 </details>
 
