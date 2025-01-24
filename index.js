@@ -20,7 +20,7 @@ const io = new Server(server);
 // isso serve para conectar back com o front-end
 app.use(cors({
   origin: 'http://localhost:3001',
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }));
 

@@ -18,10 +18,10 @@ e opções.
 </details>
 
 <details>
-  <summary><strong>👨‍💻 requisitos cobrados</strong></summary><br />
+  <summary><strong>📋 Requisitos Cobrados</strong></summary><br />
 
 - A enquete deve ter um título e uma data programada para início e para término.
-<img src='./image/requisito.png' />
+<img src='./image/requisito(1).png' />
 
 - O cadastro de opções de respostas da enquete devem ser dinâmicas, é obrigatório 
 mínimo 3 opções. 
@@ -41,8 +41,11 @@ Se a enquete não estiver ativa entre data/hora início e data/hora fim, as opç
 botão de votar deve estar desabilitado. 
 Os números de resultados devem ser apresentados sempre que houver novo voto 
 (realtime)
-<img src='./image/requisito.png' />
-<img src='./image/ultimo_requisito.png' />
+<img src='./image/requisito(1).png' />
+<br/>
+<br/>
+
+<img src='./image/requisito(2).png' />
 
 
 </details>
@@ -50,7 +53,7 @@ Os números de resultados devem ser apresentados sempre que houver novo voto
 <br/>
 
 <details>
-  <summary><strong>Habilidades Adquiridas após realizar este projeto</strong></summary><br />
+  <summary><strong>💡 Habilidades Adquiridas</strong></summary><br />
 
 Nesse projeto, eu fui capaz de:
 
@@ -69,7 +72,7 @@ WebSocket: protocolo de comunicação que permite uma conexão persistente entre
 </details>
 
 <details>
-      <summary><strong>Desafios Enfrentados ao realizar esse projeto</strong></summary><br />
+      <summary><strong>⚡ Desafios Enfrentados</strong></summary><br />
 Durante o desenvolvimento desse teste, alguns desafios se destacaram, especialmente relacionados à lógica de banco de dados e à integração entre o back-end e o front-end.
 
 
@@ -79,3 +82,9 @@ Meu maior ponto de desafio foi a integração do banco de dados com o back-end e
 Esses desafios foram superados com bastante tentativa e erro, além de pesquisa e ajustes no código.
 </details>
 <br />
+<details>
+      <summary><strong>🚀 Como visualizar o projeto e como executar ele localmente</strong></summary><br />
+ - você poderá fazer o clone do projeto utilizando esse comando: gitclone git@github.com:Robson-Aires/Signotech.git
+ ou acesse online pelo vercel: 
+</details>
+

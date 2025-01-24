@@ -100,3 +100,18 @@
 .informacoes-enquete p {
   margin: 5px 0;
 }
+
+.botao-apagar {
+  margin-top: 10px;
+  margin-left: 03%;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.botao-apagar:hover {
+  background-color: #a71d2a;
+}

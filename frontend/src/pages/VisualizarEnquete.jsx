@@ -103,6 +103,19 @@ function VisualizarEnquete() {
     }
   };
 
+  const handleApagarEnquete = async () => {
+    if (window.confirm('Tem certeza que deseja apagar esta enquete?')) {
+      try {
+        await axios.delete(`http://localhost:3000/enquete/${id}`);
+        alert('Enquete apagada com sucesso!');
+        navigate('/dashboard'); // Redireciona para o dashboard após apagar
+      } catch (error) {
+        console.error('Erro ao apagar enquete:', error);
+        alert('Ocorreu um erro ao tentar apagar a enquete.');
+      }
+    }
+  };
+
   if (!enquete) {
     return <div>Carregando...</div>;
   }
@@ -138,6 +151,9 @@ function VisualizarEnquete() {
       </div>
       <button className="botao-voltar" onClick={() => navigate('/dashboard')}>
         Voltar ao Dashboard
+      </button>
+      <button className="botao-apagar" onClick={handleApagarEnquete}>
+        Apagar Enquete
       </button>
     </div>
   );
