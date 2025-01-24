@@ -84,7 +84,7 @@ Esses desafios foram superados com bastante tentativa e erro, além de pesquisa 
 <br />
 <details>
       <summary><strong>🚀 Como visualizar o projeto e como executar ele localmente</strong></summary><br />
- - você poderá fazer o clone do projeto utilizando esse comando: gitclone git@github.com:Robson-Aires/Signotech.git
- ou acesse online pelo vercel: 
+ - você poderá fazer o clone do projeto utilizando esse comando:
+gitclone git@github.com:Robson-Aires/Signotech.git
 </details>
 
