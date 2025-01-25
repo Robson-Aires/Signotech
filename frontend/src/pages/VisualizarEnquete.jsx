@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { io } from 'socket.io-client';
-import './visualizarEnquete.css'; // Importando o CSS
+import './visualizarEnquete.css';
 
 function VisualizarEnquete() {
   const [enquete, setEnquete] = useState(null);

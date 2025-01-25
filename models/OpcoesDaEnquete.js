@@ -19,14 +19,13 @@ const OpcoesDaEnquete = sequelize.define('opcoes_da_enquete', {
     votos: {
         type: DataTypes.INTEGER,
         allowNull: true,
-        defaultValue: 0 // Valor padrão para votos
+        defaultValue: 0 
     }
 }, {
     tableName: 'opcoes_da_enquete',
     timestamps: false
 });
 
-// Relacionamento
 OpcoesDaEnquete.belongsTo(CreateEnquete, { foreignKey: 'enquete_id' });
 CreateEnquete.hasMany(OpcoesDaEnquete, { foreignKey: 'enquete_id' });
 

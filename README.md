@@ -85,7 +85,7 @@ Esses desafios foram superados com bastante tentativa e erro, além de pesquisa 
 <details>
       <summary><strong>🚀 como executar o projeto localmente</strong></summary><br />
  - você poderá fazer o clone do projeto utilizando esse comando:
-gitclone git@github.com:Robson-Aires/Signotech.git
+git clone git@github.com:Robson-Aires/Signotech.git
 
 Instale as dependências:
 npm install
@@ -115,4 +115,12 @@ Verifique se o WebSocket está funcionando corretamente para garantir a atualiza
 
 
 </details>
+<br/>
+<br />
+
+<strong>
+
+Agradeço profundamente pela oportunidade de realizar este teste. Estou à disposição para dúvidas ou mais informações!
+</strong>
+
 

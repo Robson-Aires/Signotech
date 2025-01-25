@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importando o hook useNavigate
+import { useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
-import './criarenquete.css'; // Importando o arquivo CSS
+import './criarenquete.css';
 
 function CriarEnquete() {
   const [titulo, setTitulo] = useState('');
   const [dataInicio, setDataInicio] = useState('');
   const [dataFim, setDataFim] = useState('');
   const [opcoes, setOpcoes] = useState(['', '', '']);
-  const navigate = useNavigate(); // Inicializando o navigate
+  const navigate = useNavigate(); 
 
   const handleCriarEnquete = async (e) => {
     e.preventDefault();

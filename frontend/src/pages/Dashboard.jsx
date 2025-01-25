@@ -5,8 +5,8 @@ import './Dashboard.css';
 
 function Dashboard() {
   const [enquetes, setEnquetes] = useState([]);
-  const [paginaAtual, setPaginaAtual] = useState(1); // Página atual
-  const enquetesPorPagina = 3; // Quantidade de enquetes por página
+  const [paginaAtual, setPaginaAtual] = useState(1);
+  const enquetesPorPagina = 3;
   const navigate = useNavigate();
 
   const obterStatus = (dataInicio, dataFim) => {

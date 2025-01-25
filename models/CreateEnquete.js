@@ -25,7 +25,7 @@ const CreateEnquete = sequelize.define('create_enquete', {
         allowNull: false
     }
 }, {
-    tableName: 'create_enquete', // Nome da tabela no banco
+    tableName: 'create_enquete',
     timestamps: false
 });
 
